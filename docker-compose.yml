@@ -1,0 +1,19 @@
+version: "3"
+services:
+  forge-server:
+    container_name: forge-serverX
+
+    build:
+      context: .
+      dockerfile: dockerfile
+    
+    ports:
+      - "25565:25565"
+
+    volumes:
+      - ./workspace:/workspace
+      - /mnt/mc-backup:/mnt/mc-backup
+    working_dir: /workspace
+
+    command: ["/bin/sh","-c","/workspace/start-server.sh && sleep infinity"]
+    tty: true
